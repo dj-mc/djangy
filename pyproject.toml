@@ -1,0 +1,20 @@
+[project]
+name = ""
+version = ""
+description = ""
+authors = [
+    {name = "dj-mc", email = "49037253+dj-mc@users.noreply.github.com"},
+]
+dependencies = [
+    "django>=4.1.1",
+    "psycopg2>=2.9.3",
+]
+requires-python = ">=3.10"
+license = {text = "None"}
+
+[build-system]
+requires = ["pdm-pep517>=1.0.0"]
+build-backend = "pdm.pep517.api"
+
+[tool]
+[tool.pdm]

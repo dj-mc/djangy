@@ -1,0 +1,69 @@
+[[package]]
+name = "asgiref"
+version = "3.5.2"
+requires_python = ">=3.7"
+summary = "ASGI specs, helper code, and adapters"
+
+[[package]]
+name = "django"
+version = "4.1.1"
+requires_python = ">=3.8"
+summary = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
+dependencies = [
+    "asgiref<4,>=3.5.2",
+    "sqlparse>=0.2.2",
+    "tzdata; sys_platform == \"win32\"",
+]
+
+[[package]]
+name = "psycopg2"
+version = "2.9.3"
+requires_python = ">=3.6"
+summary = "psycopg2 - Python-PostgreSQL Database Adapter"
+
+[[package]]
+name = "sqlparse"
+version = "0.4.2"
+requires_python = ">=3.5"
+summary = "A non-validating SQL parser."
+
+[[package]]
+name = "tzdata"
+version = "2022.2"
+requires_python = ">=2"
+summary = "Provider of IANA time zone data"
+
+[metadata]
+lock_version = "4.0"
+content_hash = "sha256:e40afaee6a887747209f2bbf5b60bae061255587cb2772ac71bf71e2d7b59cb2"
+
+[metadata.files]
+"asgiref 3.5.2" = [
+    {url = "https://files.pythonhosted.org/packages/1f/35/e7d59b92ceffb1dc62c65156278de378670b46ab2364a3ea7216fe194ba3/asgiref-3.5.2.tar.gz", hash = "sha256:4a29362a6acebe09bf1d6640db38c1dc3d9217c68e6f9f6204d72667fc19a424"},
+    {url = "https://files.pythonhosted.org/packages/af/6d/ea3a5c3027c3f14b0321cd4f7e594c776ebe64e4b927432ca6917512a4f7/asgiref-3.5.2-py3-none-any.whl", hash = "sha256:1d2880b792ae8757289136f1db2b7b99100ce959b2aa57fd69dab783d05afac4"},
+]
+"django 4.1.1" = [
+    {url = "https://files.pythonhosted.org/packages/80/5c/884f9fed747679a1f70321465e664f3dc1602e8b7a6e96a21163894018b3/Django-4.1.1-py3-none-any.whl", hash = "sha256:acb21fac9275f9972d81c7caf5761a89ec3ea25fe74545dd26b8a48cb3a0203e"},
+    {url = "https://files.pythonhosted.org/packages/ca/78/49ac0899f74c485acbf96bc8a5ea6a87575edb06faa9911057cacd505ba9/Django-4.1.1.tar.gz", hash = "sha256:a153ffd5143bf26a877bfae2f4ec736ebd8924a46600ca089ad96b54a1d4e28e"},
+]
+"psycopg2 2.9.3" = [
+    {url = "https://files.pythonhosted.org/packages/00/7f/a1e886c894385c731dd063dfc4bcc6b252c502222b8dbd58ca40bc970691/psycopg2-2.9.3-cp310-cp310-win32.whl", hash = "sha256:083707a696e5e1c330af2508d8fab36f9700b26621ccbcb538abe22e15485362"},
+    {url = "https://files.pythonhosted.org/packages/2a/d9/6366ce51fcd963b1edb9f2420a645ee2664f2e0237a96ca20566cca67123/psycopg2-2.9.3-cp37-cp37m-win32.whl", hash = "sha256:cb10d44e6694d763fa1078a26f7f6137d69f555a78ec85dc2ef716c37447e4b2"},
+    {url = "https://files.pythonhosted.org/packages/36/a6/e6ad8bbbecc6b8171fe4321377b8f74c0843720df99c868e63e4a6343e99/psycopg2-2.9.3-cp39-cp39-win_amd64.whl", hash = "sha256:06f32425949bd5fe8f625c49f17ebb9784e1e4fe928b7cce72edc36fb68e4c0c"},
+    {url = "https://files.pythonhosted.org/packages/51/d1/8026ce0069a4dea8bcc4ce3ddc88daa7fb1c7a1520e096a831982126e40e/psycopg2-2.9.3-cp39-cp39-win32.whl", hash = "sha256:8cf3878353cc04b053822896bc4922b194792df9df2f1ad8da01fb3043602126"},
+    {url = "https://files.pythonhosted.org/packages/57/0f/b17f51d21ece594452a70c50d5c153dd25aab182c88497f493b5afbf5820/psycopg2-2.9.3-cp38-cp38-win_amd64.whl", hash = "sha256:0762c27d018edbcb2d34d51596e4346c983bd27c330218c56c4dc25ef7e819bf"},
+    {url = "https://files.pythonhosted.org/packages/58/02/21acdeb9f69afd04006fd542383b5a47b886e7f2ec2ccd409c7a8a243b6d/psycopg2-2.9.3-cp38-cp38-win32.whl", hash = "sha256:34b33e0162cfcaad151f249c2649fd1030010c16f4bbc40a604c1cb77173dcf7"},
+    {url = "https://files.pythonhosted.org/packages/64/27/941e9b03814eb56345d5ea5f254752959418c4e2537853910e24b4def4a1/psycopg2-2.9.3-cp310-cp310-win_amd64.whl", hash = "sha256:d3ca6421b942f60c008f81a3541e8faf6865a28d5a9b48544b0ee4f40cac7fca"},
+    {url = "https://files.pythonhosted.org/packages/87/96/de1b4e1ed052d8fe7fff419e1f499930b87821625a46f8fd05dabf88009e/psycopg2-2.9.3-cp36-cp36m-win32.whl", hash = "sha256:9572e08b50aed176ef6d66f15a21d823bb6f6d23152d35e8451d7d2d18fdac56"},
+    {url = "https://files.pythonhosted.org/packages/c1/51/925f13ce3251f242c07480e973ce016348bbdd885078e343e94251cf9e5e/psycopg2-2.9.3-cp36-cp36m-win_amd64.whl", hash = "sha256:a81e3866f99382dfe8c15a151f1ca5fde5815fde879348fe5a9884a7c092a305"},
+    {url = "https://files.pythonhosted.org/packages/ce/0e/7eb38164a100be0ddef6082b29f25d2e9ec84d695d13b6d85e9b99c6eeb1/psycopg2-2.9.3-cp37-cp37m-win_amd64.whl", hash = "sha256:4295093a6ae3434d33ec6baab4ca5512a5082cc43c0505293087b8a46d108461"},
+    {url = "https://files.pythonhosted.org/packages/d1/1e/b450599a27b1809bccbd4e369f397cb18dc56b875778d961f9ae180b54b7/psycopg2-2.9.3.tar.gz", hash = "sha256:8e841d1bf3434da985cc5ef13e6f75c8981ced601fd70cc6bf33351b91562981"},
+]
+"sqlparse 0.4.2" = [
+    {url = "https://files.pythonhosted.org/packages/05/40/d836d55fb3f467243ee839ab7b814822fda522cd395fa41e282684e71ee5/sqlparse-0.4.2-py3-none-any.whl", hash = "sha256:48719e356bb8b42991bdbb1e8b83223757b93789c00910a616a071910ca4a64d"},
+    {url = "https://files.pythonhosted.org/packages/32/fe/8a8575debfd924c8160295686a7ea661107fc34d831429cce212b6442edb/sqlparse-0.4.2.tar.gz", hash = "sha256:0c00730c74263a94e5a9919ade150dfc3b19c574389985446148402998287dae"},
+]
+"tzdata 2022.2" = [
+    {url = "https://files.pythonhosted.org/packages/3e/eb/a00286433c739bb1a0d83a069b2dc379a5d14b0b9c927e3cb00cb434d740/tzdata-2022.2.tar.gz", hash = "sha256:21f4f0d7241572efa7f7a4fdabb052e61b55dc48274e6842697ccdf5253e5451"},
+    {url = "https://files.pythonhosted.org/packages/71/9b/8b9fea4f4dc956de76baa291cec1c864a8edadf2950d1740bc386d7fe55a/tzdata-2022.2-py2.py3-none-any.whl", hash = "sha256:c3119520447d68ef3eb8187a55a4f44fa455f30eb1b4238fa5691ba094f2b05b"},
+]
