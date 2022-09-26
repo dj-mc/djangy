@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+  <h1>{{ question.asked_question }}</h1>
+  <ul>
+    {% for choice in question.choice_set.all %}
+    <li>{{ choice.question_choice }}</li>
+    {% endfor %}
+  </ul>
+</html>

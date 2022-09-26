@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <!-- Django Template Language -->
+  <!-- Check if variable exists -->
+  {% if last_five_questions %}
+  <!--
+    last_five_questions is a variable loaded from the
+    same scope as the source rendering this template.
+  -->
+  <ul>
+    {% for question in last_five_questions %}
+    <li>
+      <a href="/polls/{{ question.id }}/">{{ question.asked_question }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No polls are available.</p>
+  {% endif %}
+</html>
