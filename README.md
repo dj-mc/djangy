@@ -4,8 +4,10 @@ For now I am using PDM to manage dependencies.
 It's pretty quick to set up with pipx:
 
 ```bash
+# Install pipx
 python3 -m pip install --user pipx
 python3 -m pipx ensurepath
+# Install pdm via pipx
 pipx install pdm
 ```
 

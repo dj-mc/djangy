@@ -32,13 +32,12 @@ def ask_a_question(question):
     return new_Q
 
 
-# my_question = ask_a_question("New question?")
+print(all_questions()[0])
+pprint_vars(all_questions()[0])
 
-print(all_questions()[1])
-pprint_vars(all_questions()[1])
 
 # AttributeError: Manager isn't accessible via Question instances
-# print_all_attributes(all_questions()[1])
+# print_all_attributes(all_questions()[0])
 
 
 # # Mutate attributes then save
