@@ -10,7 +10,9 @@
   <ul>
     {% for question in last_five_questions %}
     <li>
-      <a href="/polls/{{ question.id }}/">{{ question.asked_question }}</a>
+      <a href="{% url 'polls:details' question.id %}">
+        {{ question.asked_question }}
+      </a>
     </li>
     {% endfor %}
   </ul>
