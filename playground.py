@@ -20,7 +20,7 @@ def print_all_attributes(obj):
 
 
 def print_Q_attr(Q):
-    print(Q.id, Q.asked_question, Q.date_published)
+    print(f"id: ${Q.id}", f"Q: {Q.asked_question}", f"date: ${Q.date_published}")
 
 
 def ask_a_question(question):
@@ -32,13 +32,22 @@ def ask_a_question(question):
     return new_Q
 
 
-print(all_questions()[0])
-pprint_vars(all_questions()[0])
+def create_choices(question, choices_list):
+    for choice in choices_list:
+        question.choice_set.create(question_choice=choice, votes=0)
+    print("Choices:", question.choice_set.all())
+    print("Number of choices:", question.choice_set.count())
 
+
+# sleep_Q = ask_a_question("How many hours of sleep do you get per night?")
+# create_choices(sleep_Q, [6, 7, 8, 9, 10])
 
 # AttributeError: Manager isn't accessible via Question instances
 # print_all_attributes(all_questions()[0])
 
+# pprint_vars(all_questions())
+
+print(all_questions())
 
 # # Mutate attributes then save
 # q.asked_question = "Why do you program in Python?"
@@ -61,15 +70,6 @@ pprint_vars(all_questions()[0])
 # # Make sure our custom method worked.
 # q = Question.objects.get(pk=1)
 # q.was_recently_published()
-
-# # Construct new Choice objects
-# q.choice_set.create(question_choice="Not much", votes=0)
-# q.choice_set.create(question_choice="The sky", votes=0)
-# c = q.choice_set.create(question_choice="Just hacking again", votes=0)
-
-# c.question  # Choice objects relate to Question objects
-# q.choice_set.all()  # Same thing
-# q.choice_set.count()
 
 # # Double underscores separate relationships recursively
 # # Find all Choices for any question whose date_published is in this year
