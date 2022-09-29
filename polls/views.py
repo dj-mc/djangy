@@ -1,7 +1,9 @@
-from django.http import HttpResponse, Http404
-from django.template import loader
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
-from .models import Question
+from django.template import loader
+from django.urls import reverse
+
+from .models import Choice, Question
 
 
 def index(request):
@@ -10,7 +12,6 @@ def index(request):
     context = {
         "last_five_questions": last_five_questions,
     }
-    # output = "\n\n".join([q.asked_question for q in last_five_questions])
     return HttpResponse(template.render(context, request))
 
 
@@ -29,4 +30,20 @@ def results(request, question_id):
 
 
 def vote(request, question_id):
-    return HttpResponse(f"Voting for question ${question_id}")
+    target_question = get_object_or_404(Question, pk=question_id)
+    try:
+        # Use request.POST["choice"] because voting will alter data
+        selected_choice = target_question.choice_set.get(pk=request.POST["choice"])
+    except (KeyError, Choice.DoesNotExist):  # Go back to form and try again
+        return render(
+            request,
+            "polls/details.html",
+            {"question": target_question, "error_message": "No choice selected"},
+        )
+    else:
+        selected_choice.votes += 1
+        selected_choice.save()
+        # Redirect to prevent double posting if a user hits back
+        return HttpResponseRedirect(
+            reverse("polls:results", args=(target_question.id,))
+        )
