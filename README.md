@@ -1,6 +1,8 @@
 # djangy
+TLDR: Set up a [venv](https://docs.python.org/3/library/venv.html), activate it, then `pip install -r requirements.txt`  
 
-For now I am using PDM to manage dependencies.
+This project also has an optional `pyproject.toml` file to install a `__pypackages__` cache via [PDM](https://github.com/pdm-project/pdm#what-is-pep-582), which implements [PEP-582](https://peps.python.org/pep-0582/) to manage dependencies.
+
 It's pretty quick to set up with pipx:
 
 ```bash

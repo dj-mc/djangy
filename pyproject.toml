@@ -1,13 +1,14 @@
 [project]
-name = ""
-version = ""
-description = ""
+name = "djangy"
+version = "0.1.0"
+description = "Django Project"
 authors = [
     {name = "dj-mc", email = "49037253+dj-mc@users.noreply.github.com"},
 ]
 dependencies = [
     "django>=4.1.1",
     "psycopg2>=2.9.3",
+    "pip-tools>=6.8.0",
 ]
 requires-python = ">=3.10"
 license = {text = "None"}
