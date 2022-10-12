@@ -1,6 +1,6 @@
+import datetime
 from django.db import models
 from django.utils import timezone
-from datetime import datetime
 
 
 class Question(models.Model):
@@ -11,7 +11,8 @@ class Question(models.Model):
     date_published = models.DateTimeField("date published")
 
     def was_recently_published(self) -> bool:
-        return self.date_published >= timezone.now() - datetime.timedelta(days=1)
+        now = timezone.now()
+        return now - datetime.timedelta(days=30) <= self.date_published <= now
 
 
 class Choice(models.Model):

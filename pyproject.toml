@@ -22,3 +22,4 @@ build-backend = "pdm.pep517.api"
 [tool.pdm.scripts]
 dev = "python3 manage.py runserver"
 migrate = "python3 manage.py migrate"
+test = "python3 manage.py test"

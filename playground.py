@@ -1,5 +1,6 @@
 # How to run REPL scripts like this one:
-# echo 'import playground' | pmd run python3 manage.py shell
+# echo 'import playground' | pdm run python3 manage.py shell
+import datetime
 from django.utils import timezone
 from polls.models import Question
 
@@ -16,7 +17,7 @@ def pprint_vars(obj):
 
 def print_all_attributes(obj):
     for attr in dir(obj):
-        print("obj.%s = %r" % (attr, getattr(obj, attr)))
+        print(f"obj.${attr} = ${getattr(obj, attr)}")
 
 
 def print_Q_attr(Q):
@@ -38,6 +39,10 @@ def create_choices(question, choices_list):
     print("Choices:", question.choice_set.all())
     print("Number of choices:", question.choice_set.count())
 
+
+# 30 days in the future
+future_question = Question(date_published=timezone.now() + datetime.timedelta(days=30))
+print(future_question.was_recently_published())  # Should expose a bug
 
 # sleep_Q = ask_a_question("How many hours of sleep do you get per night?")
 # create_choices(sleep_Q, [6, 7, 8, 9, 10])
@@ -66,8 +71,6 @@ print(all_questions())
 # # Lookup by primary key
 # Question.objects.get(pk=1)
 # # (pk=1 is e.q. to id=1)
-
-# # Make sure our custom method worked.
 # q = Question.objects.get(pk=1)
 # q.was_recently_published()
 
