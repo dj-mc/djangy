@@ -1,7 +1,10 @@
 # How to run REPL scripts like this one:
 # echo 'import playground' | pdm run python3 manage.py shell
+
 import datetime
+
 from django.utils import timezone
+
 from polls.models import Question
 
 
