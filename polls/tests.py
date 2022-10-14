@@ -1,7 +1,17 @@
 import datetime
+
 from django.test import TestCase
+from django.urls import reverse
 from django.utils import timezone
+
 from .models import Question
+
+
+def create_question(asked_question, days_til_pub=None):
+    """Create a question with a date_published offset"""
+    days_til_pub = days_til_pub or 0
+    time = timezone.now() + datetime.timedelta(days=days_til_pub)
+    return Question.objects.create(asked_question=asked_question, date_published=time)
 
 
 class TestQuestionModel(TestCase):  # django.test.TestCase subclass
@@ -33,3 +43,60 @@ class TestQuestionModel(TestCase):  # django.test.TestCase subclass
         one_month_from_now = timezone.now() + datetime.timedelta(days=30)
         future_question = Question(date_published=one_month_from_now)
         self.assertIs(future_question.was_recently_published(), False)
+
+
+class TestQuestionIndexView(TestCase):
+    def test_no_questions_exist(self):
+        """Handle when no questions exist"""
+        response = self.client.get(reverse("polls:index"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "No polls are available.")
+        self.assertQuerysetEqual(response.context["last_five_questions"], [])
+
+    def test_display_past_question(self):
+        """Display questions whose date_published value is in the past"""
+        one_month_old_question = create_question(
+            asked_question="This question is 30 days old?", days_til_pub=-30
+        )
+        response = self.client.get(reverse("polls:index"))
+        self.assertQuerysetEqual(
+            response.context["last_five_questions"], [one_month_old_question]
+        )
+
+    def test_display_future_question(self):
+        """
+        Do *not* display questions whose date_published
+        value is in the future
+        """
+        create_question(
+            asked_question="This question is from the future?", days_til_pub=30
+        )
+        response = self.client.get(reverse("polls:index"))
+        self.assertContains(response, "No polls are available.")
+        self.assertQuerysetEqual(response.context["last_five_questions"], [])
+
+    def test_display_future_and_past_question(self):
+        """Display past questions while ignoring future questions"""
+        create_question(
+            asked_question="This question is from the future?", days_til_pub=30
+        )
+        one_month_old_question = create_question(
+            asked_question="This question is 30 days old?", days_til_pub=-30
+        )
+        response = self.client.get(reverse("polls:index"))
+        self.assertQuerysetEqual(
+            response.context["last_five_questions"], [one_month_old_question]
+        )
+
+    def test_display_two_past_questions(self):
+        """Display two questions whose date_published value is in the past"""
+        past_question_1 = create_question(
+            asked_question="Past question 1?", days_til_pub=-30
+        )
+        past_question_2 = create_question(
+            asked_question="Past question 2?", days_til_pub=-15
+        )
+        response = self.client.get(reverse("polls:index"))
+        self.assertQuerysetEqual(
+            response.context["last_five_questions"], [past_question_2, past_question_1]
+        )
