@@ -6,3 +6,4 @@ __pypackages__
 db.sqlite3
 media
 venv
+htmlcov
