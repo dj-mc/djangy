@@ -48,6 +48,7 @@ class TestQuestionModel(TestCase):  # django.test.TestCase subclass
 class TestQuestionIndexView(TestCase):
     def test_no_questions_exist(self):
         """Handle when no questions exist"""
+
         response = self.client.get(reverse("polls:index"))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No polls are available.")
@@ -58,6 +59,7 @@ class TestQuestionIndexView(TestCase):
         one_month_old_question = create_question(
             asked_question="This question is 30 days old?", days_til_pub=-30
         )
+
         response = self.client.get(reverse("polls:index"))
         self.assertQuerysetEqual(
             response.context["last_five_questions"], [one_month_old_question]
@@ -71,6 +73,7 @@ class TestQuestionIndexView(TestCase):
         create_question(
             asked_question="This question is from the future?", days_til_pub=30
         )
+
         response = self.client.get(reverse("polls:index"))
         self.assertContains(response, "No polls are available.")
         self.assertQuerysetEqual(response.context["last_five_questions"], [])
@@ -83,6 +86,7 @@ class TestQuestionIndexView(TestCase):
         one_month_old_question = create_question(
             asked_question="This question is 30 days old?", days_til_pub=-30
         )
+
         response = self.client.get(reverse("polls:index"))
         self.assertQuerysetEqual(
             response.context["last_five_questions"], [one_month_old_question]
@@ -96,7 +100,30 @@ class TestQuestionIndexView(TestCase):
         past_question_2 = create_question(
             asked_question="Past question 2?", days_til_pub=-15
         )
+
         response = self.client.get(reverse("polls:index"))
         self.assertQuerysetEqual(
             response.context["last_five_questions"], [past_question_2, past_question_1]
         )
+
+
+class TestQuestionDetailsView(TestCase):
+    def test_future_question_details(self):
+        """Return status code 404 if the question is not yet published"""
+        not_yet_published_question = create_question(
+            asked_question="Publish me in 5 days?", days_til_pub=5
+        )
+
+        url = reverse("polls:details", args=(not_yet_published_question.id,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 404)
+
+    def test_past_question_details(self):
+        """Return the details page for any past question and their poll"""
+        already_published_question = create_question(
+            asked_question="Already published 2 days ago?", days_til_pub=-2
+        )
+
+        url = reverse("polls:details", args=(already_published_question.id,))
+        response = self.client.get(url)
+        self.assertContains(response, already_published_question.asked_question)

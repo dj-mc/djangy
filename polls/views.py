@@ -53,6 +53,10 @@ class DetailsView(generic.DetailView):  # Expects pk value from urls.py
     model = Question
     template_name = "polls/details.html"
 
+    def get_queryset(self):
+        """Exclude future questions' details page"""
+        return Question.objects.filter(date_published__lte=timezone.now())
+
 
 # Results view
 
