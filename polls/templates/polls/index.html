@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'polls/style.css' %}" />
   <!-- Django Template Language -->
   <!-- Check if variable exists -->
   {% if last_five_questions %}

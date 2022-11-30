@@ -1,0 +1,14 @@
+li a {
+  color: green;
+}
+
+ul {
+  width: 400px;
+  margin: 0 auto;
+  padding: 30px;
+  background: white;
+}
+
+body {
+  background: white url("images/background.png") repeat;
+}
