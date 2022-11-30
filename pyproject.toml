@@ -23,6 +23,7 @@ build-backend = "pdm.pep517.api"
 [tool.pdm]
 [tool.pdm.scripts]
 dev = "python3 manage.py runserver"
+shell = "python3 manage.py shell"
 migrate = "python3 manage.py migrate"
 test = "python3 manage.py test"
 cover = "coverage run --source='.' manage.py test"
