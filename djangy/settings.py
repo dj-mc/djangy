@@ -55,8 +55,8 @@ ROOT_URLCONF = "djangy.urls"  # Load root
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
-        "APP_DIRS": True,
+        "DIRS": [BASE_DIR / "templates"],  # Search path for Django templates
+        "APP_DIRS": True,  # Automatically search project/app/templates/
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",

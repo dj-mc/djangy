@@ -78,8 +78,16 @@ Namespace your project's static files per application.
 
 app1 namespace:  
 `app1/static/app1/style.css`
+
 app2 namespace:  
 `app2/static/app2/style.css`
 
 You could omit the repeatedly named subdirectory, but Django will not be able to
 distinguish it from an identically named file in another application.
+
+## search for django's source
+
+Reusing templates that Django itself uses:  
+`pdm run python3 -c "import django; print(django.__path__)"`
+
+With PDM, the source is located at `./__pypackages__/3.10/lib/django/`.
