@@ -1,5 +1,5 @@
 # How to run REPL scripts like this one:
-# echo 'import setup_test_env' | pdm run python3 manage.py shell
+# echo 'from bin import setup_test_env' | pdm run python3 manage.py shell
 
 from django.test import Client
 from django.test.utils import setup_test_environment
